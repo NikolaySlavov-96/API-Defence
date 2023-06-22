@@ -32,6 +32,10 @@ async function login(username, password) {
 
     const existingUsername = await UserMode.findOne({ username });
 
+    if(existingUsername.isDelete) {
+        throw new Error('Profile is delete, contact with administrate');
+    }
+
     if (!existingUsername) {
         throw new Error('Username or Password is not valit');
     }

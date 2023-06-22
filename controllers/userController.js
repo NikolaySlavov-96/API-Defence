@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
-const { errorParser } = require('../util/parser');
+
 const { register, login, logout } = require('../services/authService');
+const { errorParser } = require('../util/parser');
 
 const createUser = async (req, res) => {
     const { errors } = validationResult(req);

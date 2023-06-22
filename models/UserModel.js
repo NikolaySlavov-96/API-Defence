@@ -5,6 +5,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     year: { type: Number, required: true },
+    isDelete: { type: Boolean, default: false },
 });
 
 userSchema.index({ email: 1 }, {
