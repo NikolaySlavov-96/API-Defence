@@ -6,7 +6,8 @@ const sourceSchema = new Schema({
     model: { type: String, required: true, },
     release: { type: String, required: true, },
     description: { type: String, required: true, },
-    createAt: { type: new Date, required: true },
+    createAt: { type: Date, required: true },
+    lastUpdate: { type: Date, required: true },
     owner: { type: ObjectId, required: true },
     isDelete: { type: Boolean, default: false }
 });

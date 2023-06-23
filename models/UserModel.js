@@ -5,7 +5,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     year: { type: Number, required: true },
-    creadAt: { type: new Date, required: true }, // check after edit user what show
+    creadAt: { type: Date, required: true },
     lastUpdate: { type: Date, required: true },
     isDelete: { type: Boolean, default: false },
 });
