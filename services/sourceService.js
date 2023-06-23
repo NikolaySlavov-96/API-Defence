@@ -7,20 +7,34 @@ const getAll = () => {
 
 const getById = (idSource) => {
     // adding and quesry isDelete
-    return Source.findById(idSource);
+    return Source.findById(idSource).find({ isDelete: false });
 }
 
 const create = (dataSource) => {
-    // To Do adding fields
-    const { articul } = dataSource;
-    return Source.create({ articul });
+    const data = new Date();
+
+    return Source.create({
+        articul: dataSource.articul,
+        mark: dataSource.mark,
+        model: dataSource.model,
+        release: dataSource.release,
+        description: dataSource.description,
+        createAt: data,
+        lastUpdate: data,
+        owner: dataSource.owner,
+    });
 }
 
 const updateById = async (idSource, dataSource) => {
-    // const oldData = await Source.findById(idSource);
-    const oldData = idSource; //check result
-    // To Do other opetaration 
-    oldData.name = dataSource.name;
+    const oldData = await Source.findById(idSource);
+
+    oldData.articul = dataSource.articul;
+    oldData.mark = dataSource.mark;
+    oldData.model = dataSource.model;
+    oldData.release = dataSource.release;
+    oldData.description = dataSource.description;
+    oldData.lastUpdate = new Date();
+
 
     return await oldData.save();
 }

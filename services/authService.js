@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const UserMode = require("../models/UserModel");
 const BlackList = require('../models/backListModel');
 const { JWT_Secret } = require('../env');
-const { errorParser } = require('../util/parser');
 
 async function register(username, email, password, year) {
 
@@ -18,11 +17,15 @@ async function register(username, email, password, year) {
         throw new Error('Email is taken');
     }
 
+    const date = new Date();
+
     const userData = await UserMode.create({
         username,
         email,
         password: await bcrypt.hash(password, 10),
-        year
+        year,
+        creadAt: date,
+        lastUpdate: date,
     })
 
     return createTokent(userData);
