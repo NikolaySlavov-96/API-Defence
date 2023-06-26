@@ -23,6 +23,11 @@ const createSource = async (req, res) => {
         if (errors.length > 0) {
             throw errors;
         };
+
+        if (Object.values(req.body).some(v => v != v)) {
+            throw new Error('All field is required');
+        }
+        
         const { articul, mark, model, release, description, owner, isDelete } = Object.assign({ owner: req.user._id }, req.body);
 
         res.json(await create({ articul, mark, model, release, description, owner, isDelete }));
@@ -45,6 +50,11 @@ const updateSource = async (req, res) => {
         if (errors.length > 0) {
             throw errors;
         }
+
+        if (Object.values(req.body).some(v => v != v)) {
+            throw new Error('All field is required');
+        }
+        
         const { articul, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
         res.json({ articul, mark, model, release, description, owner, isDelete });
     } catch (err) {

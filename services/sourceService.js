@@ -6,7 +6,6 @@ const getAll = () => {
 }
 
 const getById = (idSource) => {
-    // adding and quesry isDelete
     return Source.findById(idSource).find({ isDelete: false });
 }
 
