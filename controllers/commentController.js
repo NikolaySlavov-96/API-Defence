@@ -34,8 +34,8 @@ const createComments = async (req, res) => {
             throw errors;
         }
 
-        const { _id, ownerId, name, commentar, isDelete, } = await createCommentForProduct(req.params.idSource, req.user._id, req.body);
-        res.json({ _id, ownerId, name, commentar, isDelete, });
+        const { ownerId, name, commentar, isDelete, } = await createCommentForProduct(req.params.idSource, req.user._id, req.body);
+        res.json({ ownerId, name, commentar, isDelete, });
 
     } catch (err) {
         const message = errorParser(err);

@@ -1,4 +1,5 @@
 const Comment = require("../models/CommentarModel");
+const { createNewDate } = require("../util/parser");
 
 const getAllComment = (idProduct) => {
     return Comment.find({ productId: idProduct });
@@ -9,14 +10,13 @@ const getCommentById = (idComment) => {
 }
 
 const createCommentForProduct = async (idProduct, owner, dataComment) => {
-    const date = new Date();
     const createComment = await Comment.create({
         productId: idProduct,
         ownerId: owner,
         name: dataComment.name,
         commentar: dataComment.commentar,
-        createAt: date,
-        lastUpdate: date,
+        createAt: createNewDate(),
+        lastUpdate: createNewDate(),
     })
     return createComment;
 }
@@ -26,16 +26,15 @@ const editCommentById = async (idComment, newDate) => {
 
     commentInfo.name = newDate.name;
     commentInfo.commentar = newDate.commentar;
-    commentInfo.lastUpdate = new Date();
+    commentInfo.lastUpdate = createNewDate();
 
     return await commentInfo.save();
 }
 
 const deleteCommentById = async (idComment) => {
     const commentInfor = await Comment.findById(idComment);
-    const date = new Date();
 
-    commentInfor.lastUpdate = date;
+    commentInfor.lastUpdate = createNewDate();
     commentInfor.isDelete = !commentInfor.isDelete;
 
     return await commentInfor.save();

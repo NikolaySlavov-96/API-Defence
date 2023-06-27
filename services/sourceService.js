@@ -1,4 +1,5 @@
 const Source = require("../models/SourceModel");
+const { createNewDate } = require("../util/parser");
 
 const getAll = () => {
     const query = { isDelete: false };
@@ -10,7 +11,6 @@ const getById = (idSource) => {
 }
 
 const create = (dataSource) => {
-    const data = new Date();
 
     return Source.create({
         articul: dataSource.articul,
@@ -18,8 +18,8 @@ const create = (dataSource) => {
         model: dataSource.model,
         release: dataSource.release,
         description: dataSource.description,
-        createAt: data,
-        lastUpdate: data,
+        createAt: createNewDate(),
+        lastUpdate: createNewDate(),
         owner: dataSource.owner,
     });
 }
@@ -32,7 +32,7 @@ const updateById = async (idSource, dataSource) => {
     oldData.model = dataSource.model;
     oldData.release = dataSource.release;
     oldData.description = dataSource.description;
-    oldData.lastUpdate = new Date();
+    oldData.lastUpdate = createNewDate();
 
 
     return await oldData.save();
@@ -41,6 +41,7 @@ const updateById = async (idSource, dataSource) => {
 const deleteById = async (idSource) => {
     const oldData = await Source.findById(idSource);
 
+    oldData.lastUpdate = createNewDate();
     oldData.isDelete = !oldData.isDelete;
 
     return oldData.save();
