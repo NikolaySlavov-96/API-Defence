@@ -1,5 +1,4 @@
-const { query } = require("express");
-const Source = require("../models/SourceModel");
+const { getSearchResult } = require("../services/searchService");
 
 const getFindValue = async (req, res) => {
     const findData = req.query.where.split('=');
@@ -8,12 +7,11 @@ const getFindValue = async (req, res) => {
     const query = {}
     query[nameFild] = valueFilt;
 
-    const searchResult = await Source.find(query);
+    const searchResult = await getSearchResult(query);
 
     res.json(searchResult);
 }
 
 module.exports = {
     getFindValue,
-
 }
