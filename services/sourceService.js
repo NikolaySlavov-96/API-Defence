@@ -1,9 +1,8 @@
 const Source = require("../models/SourceModel");
 const { createNewDate } = require("../util/parser");
 
-const getAll = () => {
-    const query = { isDelete: false };
-    return Source.find(query);
+const getAll = (query, limit, skipSource) => {
+    return Source.find(query).limit(limit).skip(skipSource);
 }
 
 const getById = (idSource) => {

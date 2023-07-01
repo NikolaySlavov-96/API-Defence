@@ -6,7 +6,14 @@ const { getAll, getById, create, updateById, deleteById } = require("../services
 const { errorParser } = require('../util/parser');
 
 const getAllSource = async (req, res) => {
-    const source = await getAll();
+    
+    const page = parseInt(req?.query?.page) || 1;
+    const limit = parseInt(req?.query?.limit) || 10;
+    const skipSource = (page - 1) * limit; 
+
+    const query = { isDelete: false };
+    
+    const source = await getAll(query, limit, skipSource);
 
     res.json(source);
 };
