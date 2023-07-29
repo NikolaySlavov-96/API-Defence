@@ -13,6 +13,7 @@ const create = (dataSource) => {
 
     return Source.create({
         articul: dataSource.articul,
+        img: dataSource.img,
         mark: dataSource.mark,
         model: dataSource.model,
         release: dataSource.release,
@@ -27,6 +28,7 @@ const updateById = async (idSource, dataSource) => {
     const oldData = await Source.findById(idSource);
 
     oldData.articul = dataSource.articul;
+    oldData.img = dataSource.img;
     oldData.mark = dataSource.mark;
     oldData.model = dataSource.model;
     oldData.release = dataSource.release;

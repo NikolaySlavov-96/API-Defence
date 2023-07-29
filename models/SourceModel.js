@@ -2,6 +2,7 @@ const { model, Schema, Types: { ObjectId } } = require('mongoose');
 
 const sourceSchema = new Schema({
     articul: { type: String, required: true, minLength: [5, 'Articul field is with minilam long 5 charactrs'] },
+    img: { type: String, required: true },
     mark: { type: String, required: true, minLength: [5, 'Mark field is with minilam long 5 charactrs'] },
     model: { type: String, required: true, minLength: [5, 'Model field is with minilam long 5 charactrs'] },
     release: { type: String, required: true, },

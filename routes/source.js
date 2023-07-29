@@ -13,6 +13,7 @@ source.get('/product/:idSource', sourceConteroller.getSourceById);
 source.post('/product',
     hasUser(),
     body('articul').isLength({ min: 5 }).withMessage('Articul field minal lenth is 5 characters'),
+    body('img').isLength({ min: 5 }).withMessage('Img field minal lenth is 5 characters'),
     body('mark').isLength({ min: 5 }).withMessage('Mark field minal lenth is 5 characters'),
     body('model').isLength({ min: 5 }).withMessage('Model field minal lenth is 5 characters'),
     body('description').isLength({ min: 5 }).withMessage('Description field minal lenth is 5 characters'),

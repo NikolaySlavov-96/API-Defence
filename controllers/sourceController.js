@@ -6,13 +6,13 @@ const { getAll, getById, create, updateById, deleteById } = require("../services
 const { errorParser } = require('../util/parser');
 
 const getAllSource = async (req, res) => {
-    
+
     const page = parseInt(req?.query?.page) || 1;
     const limit = parseInt(req?.query?.limit) || 10;
-    const skipSource = (page - 1) * limit; 
+    const skipSource = (page - 1) * limit;
 
     const query = { isDelete: false };
-    
+
     const source = await getAll(query, limit, skipSource);
 
     res.json(source);
@@ -34,8 +34,8 @@ const createSource = async (req, res) => {
         if (Object.values(req.body).some(v => v != v)) {
             throw new Error('All field is required');
         }
-        
-        const { articul, mark, model, release, description, owner, isDelete } = Object.assign({ owner: req.user._id }, req.body);
+
+        const { articul, img, mark, model, release, description, owner, isDelete } = Object.assign({ owner: req.user._id }, req.body);
 
         res.json(await create({ articul, mark, model, release, description, owner, isDelete }));
     } catch (err) {
@@ -61,8 +61,8 @@ const updateSource = async (req, res) => {
         if (Object.values(req.body).some(v => v != v)) {
             throw new Error('All field is required');
         }
-        
-        const { articul, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
+
+        const { articul, img, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
         res.json({ articul, mark, model, release, description, owner, isDelete });
     } catch (err) {
         const message = errorParser(err);
