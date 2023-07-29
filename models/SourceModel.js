@@ -8,7 +8,7 @@ const sourceSchema = new Schema({
     description: { type: String, required: true, minLength: [5, 'Description field is with minilam long 5 charactrs'] },
     createAt: { type: Date, required: true },
     lastUpdate: { type: Date, required: true },
-    owner: { type: ObjectId, required: true },
+    owner: { type: ObjectId, required: true, ref: 'User' },
     isDelete: { type: Boolean, default: false }
 });
 

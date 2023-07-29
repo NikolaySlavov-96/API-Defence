@@ -2,7 +2,7 @@ const Source = require("../models/SourceModel");
 const { createNewDate } = require("../util/parser");
 
 const getAll = (query, limit, skipSource) => {
-    return Source.find(query).limit(limit).skip(skipSource);
+    return Source.find(query).limit(limit).skip(skipSource).populate('owner');
 }
 
 const getById = (idSource) => {
