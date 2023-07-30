@@ -37,7 +37,7 @@ const createSource = async (req, res) => {
 
         const { articul, img, mark, model, release, description, owner, isDelete } = Object.assign({ owner: req.user._id }, req.body);
 
-        res.json(await create({ articul, mark, model, release, description, owner, isDelete }));
+        res.json(await create({ articul, img, mark, model, release, description, owner, isDelete }));
     } catch (err) {
         const message = errorParser(err);
         res.status(400).json({ message });
@@ -47,7 +47,7 @@ const createSource = async (req, res) => {
 const updateSource = async (req, res) => {
     const sourceInfo = await getById(req.params.idSource);
 
-    if (sourceInfo.owner.toString() !== req.user._id) {
+    if (sourceInfo[0].owner.toString() !== req.user._id) {
         return res.status(403).json({ message: 'You canno\'t modify this sources' });
     }
 
@@ -63,7 +63,7 @@ const updateSource = async (req, res) => {
         }
 
         const { articul, img, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
-        res.json({ articul, mark, model, release, description, owner, isDelete });
+        res.json({ articul, img, mark, model, release, description, owner, isDelete });
     } catch (err) {
         const message = errorParser(err);
         res.status(400).json({ message });
