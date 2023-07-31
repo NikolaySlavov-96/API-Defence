@@ -9,12 +9,12 @@ const getCommentarsByIdProduct = async (req, res) => {
     const idSource = req.params.idSource;
 
     //To Do Implement with Promice All
-    const source = await getById(idSource).lean();
+    // const source = await getById(idSource).lean();
     const comments = await getAllComment(idSource);
 
-    const result = source.map(e => ({ ...e, comment: comments }))
+    // const result = source.map(e => ({ ...e, comment: comments }))
 
-    res.json(result);
+    res.json(comments);
 }
 
 const getCommentByIdComment = async (req, res) => {
