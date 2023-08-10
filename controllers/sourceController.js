@@ -62,8 +62,8 @@ const updateSource = async (req, res) => {
             throw new Error('All field is required');
         }
 
-        const { articul, img, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
-        res.json({ articul, img, mark, model, release, description, owner, isDelete });
+        const { _id, articul, img, mark, model, release, description, owner, isDelete } = await updateById(req.params.idSource, req.body);
+        res.json({ _id, articul, img, mark, model, release, description, owner, isDelete });
     } catch (err) {
         const message = errorParser(err);
         res.status(400).json({ message });
