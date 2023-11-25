@@ -1,9 +1,10 @@
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const UserMode = require("../models/UserModel");
 const BlackList = require('../models/backListModel');
-const { JWT_Secret } = require('../env');
+const JWT_Secret = process.env.JWT_SECRET;
 
 async function register(username, email, password, year) {
 
