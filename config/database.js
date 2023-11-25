@@ -18,5 +18,3 @@ module.exports = async (app) => {
         // process.exit(1);
     }
 }
-
-//mongodb+srv://db_user:B91aP29zEUi5E4fl@cluster0.veydorh.mongodb.net/?retryWrites=true&w=majority
