@@ -36,10 +36,11 @@ const updateById = async (idSource, dataSource) => {
     oldData.description = dataSource.description;
     oldData.lastUpdate = createNewDate();
 
-    const { _id, articul, img, mark, model, release, description, isDelete } = await oldData.save();
-    const ownerDate = await UserMode.findById({ _id: dataSource.owner })
+    const { _id, articul, img, mark, model, release, description, owner, isDelete } = await oldData.save();
+    const ownerDate = await UserMode.findById({ _id: owner })
 
     return { _id, articul, img, mark, model, release, description, owner: ownerDate, isDelete }
+
 }
 
 const deleteById = async (idSource) => {
