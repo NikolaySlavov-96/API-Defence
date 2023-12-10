@@ -1,4 +1,5 @@
 const Source = require("../models/SourceModel");
+const UserMode = require("../models/UserModel");
 const { createNewDate } = require("../util/parser");
 
 const getAll = (query, limit, skipSource) => {
@@ -35,8 +36,10 @@ const updateById = async (idSource, dataSource) => {
     oldData.description = dataSource.description;
     oldData.lastUpdate = createNewDate();
 
+    const { _id, articul, img, mark, model, release, description, isDelete } = await oldData.save();
+    const ownerDate = await UserMode.findById({ _id: dataSource.owner })
 
-    return await oldData.save();
+    return { _id, articul, img, mark, model, release, description, owner: ownerDate, isDelete }
 }
 
 const deleteById = async (idSource) => {
