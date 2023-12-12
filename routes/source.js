@@ -47,7 +47,6 @@ source.delete('/product/:idSource/comment/:idComment', commetController.deleteCo
 
 // detail page
 source.get('/product/:idSource/comments',
-    hasUser(),
     commetController.getCommentarsByIdProduct);
 
 
