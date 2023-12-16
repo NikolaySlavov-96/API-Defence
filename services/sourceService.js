@@ -10,9 +10,9 @@ const getById = (idSource) => {
     return Source.findById(idSource).find({ isDelete: false });
 }
 
-const create = (dataSource) => {
+const create = async (dataSource) => {
 
-    return Source.create({
+    const { _id, articul, img, mark, model, release, description, owner, isDelete } = await Source.create({
         articul: dataSource.articul,
         img: dataSource.img,
         mark: dataSource.mark,
@@ -23,6 +23,10 @@ const create = (dataSource) => {
         lastUpdate: createNewDate(),
         owner: dataSource.owner,
     });
+
+    const ownerDate = await UserMode.findById({ _id: owner })
+
+    return { _id, articul, img, mark, model, release, description, owner: ownerDate, isDelete }
 }
 
 const updateById = async (idSource, dataSource) => {
