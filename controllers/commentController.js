@@ -8,8 +8,6 @@ const { getById } = require('../services/sourceService');
 const getCommentarsByIdProduct = async (req, res) => {
     const idSource = req.params.idSource;
 
-    //To Do Implement with Promice All
-    // const source = await getById(idSource).lean();
     const comments = await getAllComment(idSource);
 
     // const result = source.map(e => ({ ...e, comment: comments }))
@@ -20,9 +18,9 @@ const getCommentarsByIdProduct = async (req, res) => {
 const getCommentByIdComment = async (req, res) => {
     const idComment = req.params.idComment;
 
-    const { _id, ownerId, name, commentar, isDelete } = await getCommentById(idComment);
+    const result = await getCommentById(idComment);
 
-    res.json({ _id, ownerId, name, commentar, isDelete });
+    res.json(result);
 }
 
 const createComments = async (req, res) => {
@@ -34,8 +32,8 @@ const createComments = async (req, res) => {
             throw errors;
         }
 
-        const { ownerId, name, commentar, isDelete, } = await createCommentForProduct(req.params.idSource, req.user._id, req.body);
-        res.json({ ownerId, name, commentar, isDelete, });
+        const result = await createCommentForProduct(req.params.idSource, req.user._id, req.body);
+        res.json(result);
 
     } catch (err) {
         const message = errorParser(err);
@@ -54,10 +52,11 @@ const editCommentByIdComment = async (req, res) => {
 
         const idComment = req.params.idComment;
 
-        const { _id, ownerId, name, commentar, isDelete, } = await editCommentById(idComment, req.body);
-        res.json({ _id, ownerId, name, commentar, isDelete, });
+        const result = await editCommentById(idComment, req.body);
+        res.json(result);
     } catch (err) {
-
+        const message = errorParser(err);
+        res.status(400).json({ message });
     }
 }
 

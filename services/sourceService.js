@@ -12,7 +12,7 @@ const getById = (idSource) => {
 
 const create = async (dataSource) => {
 
-    const { _id, articul, img, mark, model, release, description, owner, isDelete } = await Source.create({
+    const { _id, articul, img, mark, model, release, description, owner, isDelete, createAt, lastUpdate } = await Source.create({
         articul: dataSource.articul,
         img: dataSource.img,
         mark: dataSource.mark,
@@ -26,7 +26,7 @@ const create = async (dataSource) => {
 
     const ownerDate = await UserMode.findById({ _id: owner })
 
-    return { _id, articul, img, mark, model, release, description, owner: ownerDate, isDelete }
+    return { _id, articul, img, mark, model, release, description, owner: ownerDate, isDelete, createAt, lastUpdate }
 }
 
 const updateById = async (idSource, dataSource) => {
