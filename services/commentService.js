@@ -2,7 +2,7 @@ const Comment = require("../models/CommentarModel");
 const { createNewDate } = require("../util/parser");
 
 const getAllComment = (idProduct) => {
-    return Comment.find({ productId: idProduct });
+    return Comment.find({ productId: idProduct, isDelete: false });
 }
 
 const getCommentById = (idComment) => {
