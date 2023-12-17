@@ -13,4 +13,16 @@ profile.delete('/profile',
     hasUser(),
     profileController.deleteUser);
 
+profile.get('/produts',
+    hasUser(),
+    profileController.allUserProduct
+);
+profile.get('/comments',
+    hasUser(),
+    profileController.allCommentsInUser
+);
+
+// Adding given all posted commentars of current user 
+// Adding given all posted product of current user 
+
 module.exports = profile;

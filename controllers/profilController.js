@@ -1,4 +1,6 @@
+const { getCommentsByUserId } = require("../services/commentService");
 const { getUserById, editUserById, deleteUserById } = require("../services/profileService")
+const { getByUserId } = require("../services/sourceService");
 
 
 const getUser = async (req, res) => {
@@ -16,8 +18,29 @@ const deleteUser = async (req, res) => {
     res.status(204).end();
 }
 
+const allUserProduct = async (req, res) => {
+    try {
+        const all = await getByUserId(req.user._id);
+
+        res.status(200).json(all);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
+const allCommentsInUser = async (req, res) => {
+    try {
+        const all = await getCommentsByUserId(req.user._id);
+        res.status(200).json(all);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
 module.exports = {
     getUser,
     updateUser,
     deleteUser,
+    allUserProduct,
+    allCommentsInUser,
 }

@@ -10,6 +10,10 @@ const getById = (idSource) => {
     return Source.findById(idSource).find({ isDelete: false });
 }
 
+const getByUserId = (owner) => {
+    return Source.find({ owner, isDelete: false })
+}
+
 const create = async (dataSource) => {
 
     const { _id, articul, img, mark, model, release, description, owner, isDelete, createAt, lastUpdate } = await Source.create({
@@ -59,6 +63,7 @@ const deleteById = async (idSource) => {
 module.exports = {
     getAll,
     getById,
+    getByUserId,
     create,
     updateById,
     deleteById

@@ -9,6 +9,10 @@ const getCommentById = (idComment) => {
     return Comment.findById(idComment);
 }
 
+const getCommentsByUserId = (ownerId) => {
+    return Comment.find({ ownerId, isDelete: false })
+}
+
 const createCommentForProduct = async (idProduct, owner, dataComment) => {
     const createComment = await Comment.create({
         productId: idProduct,
@@ -43,6 +47,7 @@ const deleteCommentById = async (idComment) => {
 module.exports = {
     getAllComment,
     getCommentById,
+    getCommentsByUserId,
     createCommentForProduct,
     editCommentById,
     deleteCommentById,
