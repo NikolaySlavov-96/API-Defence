@@ -3,7 +3,11 @@ const { createNewDate } = require("../util/parser");
 
 
 const getUserById = async (userId) => {
-    return await UserMode.findById(userId).find({ isDelete: false });
+    const data = await UserMode.findById(userId);
+    if (data.isDelete) {
+        return {};
+    }
+    return data;
 }
 
 const editUserById = async (userId, data) => {
