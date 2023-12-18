@@ -22,7 +22,4 @@ profile.get('/comments',
     profileController.allCommentsInUser
 );
 
-// Adding given all posted commentars of current user 
-// Adding given all posted product of current user 
-
 module.exports = profile;
