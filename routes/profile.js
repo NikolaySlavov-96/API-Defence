@@ -13,7 +13,7 @@ profile.delete('/profile',
     hasUser(),
     profileController.deleteUser);
 
-profile.get('/produts',
+profile.get('/prodcuts',
     hasUser(),
     profileController.allUserProduct
 );
