@@ -1,5 +1,6 @@
-Required variables to run the application
+This project is development of JS, and using NodeJS, ExpressJS and database mongoDB wtih ODM - mongoose.
 
+Required variables in file .env to run the application:
 PORT='',
 DB_ADDRESS=''
 DB_USER='',
